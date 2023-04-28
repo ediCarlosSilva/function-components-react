@@ -1,28 +1,24 @@
 import React, { useState } from 'react';
 import { TextField, Button, Switch, FormControlLabel } from '@mui/material';
 
-export default function FormularioCadastro() {
+export default function FormularioCadastro({aoEnviar}) {
     
     const [nome, setNome] = useState('');
     const [sobrenome, setSobrenome] = useState('');
     const [cpf, setCpf] = useState('');
+    const [promocoes, setPromocoes] = useState(true);
+    const [novidades, setNovidades] = useState(true);
 
     return (
         <form onSubmit={(evento) => {
                 evento.preventDefault();
-                console.log(nome, sobrenome, cpf);
+                aoEnviar({nome, sobrenome, cpf, promocoes, novidades})
                 }}>
 
             <TextField
                 value={nome}
                 onChange={event => {
-                    let tempNome = event.target.value;
-                    
-                    if(tempNome.length >= 3) {
-                        tempNome = tempNome.substr(0, 3);
-                    }
-
-                    setNome(tempNome);
+                    setNome(event.target.value);
                 }}
                 
                 id="nome"
@@ -58,12 +54,22 @@ export default function FormularioCadastro() {
 
             <FormControlLabel
                 label="Promoções"
-                control={<Switch name="promocoes" defaultChecked />}
+                control={<Switch 
+                    checked={promocoes}
+                    onChange={event => {
+                        setPromocoes(event.target.checked);
+                    }}
+                    name="promocoes" 
+                    color="primary" />}
             />
 
             <FormControlLabel
                 label="Novidades"
-                control={<Switch name="novidades" defaultChecked />}
+                control={<Switch 
+                    onChange={event => {
+                        setNovidades(event.target.checked)
+                    }}
+                    name="novidades" checked={novidades} color="primary" />}
             />
 
             <Button type="submit" variant="contained" color="primary">Cadastrar</Button>

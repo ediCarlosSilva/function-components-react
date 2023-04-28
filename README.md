@@ -15,3 +15,13 @@
 - Desconstrução de Arrays
 
 - Assincronicidade da função de atribuição do estado
+
+- Quais são as Regras de utilização dos Hooks
+
+- Propriedade checked para Switchs
+
+- Criando mais estados e a maneira de trabalhar com eles em function components
+
+- Como receber propriedades em um componente de função
+
+- Desconstrução de Objetos no JS

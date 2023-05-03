@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TextField, Button, Switch, FormControlLabel } from '@mui/material';
 
-export default function DadosPessoais({aoEnviar, validarCPF}) {
+export default function FormularioCadastro({aoEnviar, validarCPF}) {
     
     const [nome, setNome] = useState('');
     const [sobrenome, setSobrenome] = useState('');

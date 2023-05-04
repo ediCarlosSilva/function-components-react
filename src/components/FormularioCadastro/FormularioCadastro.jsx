@@ -12,6 +12,7 @@ export default function FormularioCadastro({ aoEnviar, validarCPF }) {
         setEtapaAtual(etapaAtual + 1);
     }
 
+    // com switch case
     function formularioAtual(etapa) {
         switch(etapa) {
             case 0:

@@ -2,17 +2,23 @@ import React, { useState } from 'react';
 import DadosPessoais from './DadosPessoais';
 import DadosUsuario from './DadosUsuario';
 import DadosEntrega from './DadosEntrega';
-import { Typography } from '@mui/material'
 
 export default function FormularioCadastro({ aoEnviar, validarCPF }) {
 
     const [etapaAtual, setEtapaAtual] = useState(0);
+    const [dadosColetados, setDados] = useState({});
 
     const formulario = [
-        <DadosUsuario aoEnviar={proximo} />,
-        <DadosPessoais aoEnviar={proximo} validarCPF={validarCPF} />,
-        <DadosEntrega aoEnviar={aoEnviar} />
+        <DadosUsuario aoEnviar={coletarDados} />,
+        <DadosPessoais aoEnviar={coletarDados} validarCPF={validarCPF} />,
+        <DadosEntrega aoEnviar={coletarDados} />
     ];
+
+    function coletarDados(dados) {
+        setDados({...dadosColetados, ...dados});
+        console.log(dadosColetados);
+        proximo();
+    }
 
     function proximo() {
         setEtapaAtual(etapaAtual + 1);

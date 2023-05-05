@@ -1,31 +1,15 @@
 import React, {  useState, useContext } from "react";
 import {TextField, Button} from '@mui/material';
 import ValidacoesCadastro from "../../contexts/ValidacoesCadastro";
+import useErros from "../../hooks/useErros";
 
 export default function DadosUsuario({aoEnviar}) {
 
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
-
-    const [erros, setErros] = useState({senha: {valido: true, texto: ""}});
-
     const validacoes = useContext(ValidacoesCadastro);
 
-    function validarCampo(evento) {
-        const {name, value} = evento.target;
-        const novoEstado = {...erros}
-        novoEstado[name] = validacoes[name](value);
-        setErros(novoEstado)
-    }
-
-    function possoEnviar () {
-        for (let campo in erros) {
-            if (!erros[campo].valido) {
-                return false;
-            }
-        }
-        return true;
-    }
+    const [erros, validarCampo, possoEnviar] = useErros(validacoes);
 
     return (
         <form onSubmit={(evento) => {
